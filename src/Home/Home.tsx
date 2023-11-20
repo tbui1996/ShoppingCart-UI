@@ -1,5 +1,5 @@
 import { SimpleGrid, Box } from "@chakra-ui/react";
-import Form from "./Form";
+import Form from "./Form/Form";
 import ListOfBooks from "./ListOfBooks";
 
 const Home: React.FC =() => {
