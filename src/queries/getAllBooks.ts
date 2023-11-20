@@ -1,24 +1,41 @@
-import { useQuery, UseQueryOptions, UseQueryResult } from 'react-query';
+import { UseQueryOptions, UseQueryResult, useQuery } from 'react-query';
 import axiosInstance from '../network';
-import { BookDetails } from './getBooks';
-//title
-//author
-//description
-//price 3.99 i.e 4
+//import { BookDetails } from './getBooks';
 
 
+export interface ListBookDetail {
+  handleClick: () => void;
+  key: number;
+  ID: number;
+  title: string;
+  author: string;
+  description: string;
+  price: number;
+  genre: string;
+  
+  }
+
+// interface ResultWrapper<T>{
+//   result: T;
+// }
 export const useGetAllBookKey = 'get-all-book'
 
-
-const useGetAllBooks = () => {
-    useQuery(
-        useGetAllBookKey,
-        async () => 
-        (await axiosInstance.get<{result: BookDetails[]| undefined}>(`/books`)).data,
-        {
-            enabled:true
-        }
-    )
-}
+const useGetAllBooks = (title: string, author: string, genre: string,
+  options: UseQueryOptions<ListBookDetail[], string> = {}
+   ): UseQueryResult<ListBookDetail[], string> => 
+   useQuery<ListBookDetail[], string>(
+    useGetAllBookKey,
+   async () =>
+  (await axiosInstance.get<ListBookDetail[]>(`/api/books/${title}/${author}/${genre}/`
+  ))
+  .data,
+  
+  {
+    ...options,
+    enabled: Boolean(title) && Boolean(author) && Boolean(genre) && (options.enabled == null || options.enabled)
+  }
+ 
+  
+  );
 
 export default useGetAllBooks;

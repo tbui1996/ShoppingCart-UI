@@ -1,19 +1,21 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { SimpleGrid, Box } from "@chakra-ui/react";
 import Form from "./Form";
+import ListOfBooks from "./ListOfBooks";
 
 const Home: React.FC =() => {
 
 
     return(
-        <Grid>
-            <GridItem colSpan={2}>
+        <SimpleGrid columns={3} spacing={10}>
+            <Box >
                 <Form />
-            </GridItem>
-
-            <GridItem colSpan={2}>
-
-            </GridItem>
-        </Grid>
+            </Box>
+            <Box >
+                <ListOfBooks />
+            </Box>
+            <Box></Box>
+            
+        </SimpleGrid>
     )
 }
 

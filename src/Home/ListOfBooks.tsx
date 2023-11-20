@@ -1,34 +1,45 @@
-import { ListItem, Box, Text, Button } from "@chakra-ui/react";
+import { List, Box, Text, Button } from "@chakra-ui/react";
 import useGetAllBooks from "../queries/getAllBooks";
-import { BookDetails } from "../queries/getBooks";
+import ListBookRow
+ from "./ListBookRow";
+ import {useRecoilValue} from 'recoil';
+import { authorSearch, genreSearch, titleSearch } from "../atom/store";
 
 const ListOfBooks: React.FC =() => {
-    const {data: bookDetails} = useGetAllBooks();
+    let title = useRecoilValue(titleSearch);
+    let author = useRecoilValue(authorSearch);
+    let genre = useRecoilValue(genreSearch);
+    let {data: bookDetails, isError, isLoading} = useGetAllBooks(title, author, genre);
+
+    if (isError) {
+        bookDetails = []
+    }
+    if (isLoading) {
+        return <span>Loading...</span>
+    }
     
     const handleClick = () => {
-
+        console.log('you are the worst!')
     }
 return(
-    <ListItem>
+    <List>
         <Box>
             {
-                bookDetails && bookDetails.map((book, i) => (
+                bookDetails && bookDetails.map((book, index: number) => (
                     <ListBookRow 
-                    key={i}
-                    title={book.title}
-                    description={book.description}
-                    price={book.price}
-                    />
-                    // <Text key={i} onClick={() => {handleClick()}}>
-                    //     {book.title} {book.author} {book.description} {book.price}
-                    // </Text>
-                    // <Button>Add</Button>
-                    // <Button>Delete</Button>
-                    
+                        handleClick={handleClick}
+                        key={index}
+                        ID={book.ID}
+                        title={book.title}
+                        description={book.description}
+                        author={book.author}
+                        price={book.price} 
+                        genre={book.genre}                    
+                    />        
                 ))
             }
         </Box>
-    </ListItem>
+    </List>
 )
 }
 
