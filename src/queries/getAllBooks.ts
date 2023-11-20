@@ -2,7 +2,6 @@ import { UseQueryOptions, UseQueryResult, useQuery } from 'react-query';
 import axiosInstance from '../network';
 //import { BookDetails } from './getBooks';
 
-
 export interface ListBookDetail {
   handleClick: () => void;
   key: number;
