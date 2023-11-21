@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableContainer, Tbody, Td, Thead, Tr } from '@chakra-ui/react';
+import { Table, TableContainer, Tbody, Td, Thead, Tr, Button } from '@chakra-ui/react';
 import { ListBookDetail } from '../queries/getAllBooks';
 
 
@@ -16,26 +16,18 @@ genre
 }) => {
     return (
         <>
-        <TableContainer>
-            <Table>
-                <Thead>Book: {ID}</Thead>
-                    <Tbody>
-                        <Tr>
-                            <Td>{title}</Td>
-                            <Td>{description}</Td>
-                            <Td>{author}</Td>
-                            <Td>{price}</Td>
-                            <Td>{genre}</Td>
-                        </Tr>
-                    </Tbody>
-                
-            </Table>
-        </TableContainer>
-        
+        <Tbody>
+            <Tr>
+                <Td>{title}</Td>
+                <Td>{description}</Td>
+                <Td>{author}</Td>
+                <Td>{price}</Td>
+                <Td>{genre}</Td>
+                <Button onClick={handleClick}>Click</Button>
+            </Tr>
+        </Tbody>
         </>
     )
-
 }
-
 
 export default ListBookRow;
