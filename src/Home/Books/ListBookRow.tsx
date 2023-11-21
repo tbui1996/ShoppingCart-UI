@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableContainer, Tbody, Td, Thead, Tr, Button } from '@chakra-ui/react';
-import { ListBookDetail } from '../queries/getAllBooks';
+import { ListBookDetail } from '../../queries/getAllBooks';
 
 
 

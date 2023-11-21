@@ -1,9 +1,9 @@
 import { List, Box, Spinner, Tr, Th, Td, Table } from "@chakra-ui/react";
-import useGetAllBooks, { ListBookDetail } from "../queries/getAllBooks";
+import useGetAllBooks, { ListBookDetail } from "../../queries/getAllBooks";
 import ListBookRow
  from "./ListBookRow";
  import {useRecoilValue} from 'recoil';
-import { authorSearch, genreSearch, titleSearch } from "../atom/store";
+import { authorSearch, genreSearch, titleSearch } from "../../atom/store";
 
 const ListOfBooks: React.FC =() => {
     const title = useRecoilValue(titleSearch);
