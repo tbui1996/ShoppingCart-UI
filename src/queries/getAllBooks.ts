@@ -1,22 +1,8 @@
 import { UseQueryOptions, UseQueryResult, useQuery } from 'react-query';
 import axiosInstance from '../network';
-//import { BookDetails } from './getBooks';
+import { ListBookDetail } from '../types';
 
-export interface ListBookDetail {
-  handleClick: () => void;
-  key: number;
-  ID: number;
-  title: string;
-  author: string;
-  description: string;
-  price: number;
-  genre: string;
-  
-  }
 
-// interface ResultWrapper<T>{
-//   result: T;
-// }
 export const useGetAllBookKey = 'get-all-book'
 
 const useGetAllBooks = (title: string, author: string, genre: string,
