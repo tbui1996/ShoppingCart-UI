@@ -5,21 +5,19 @@ import ListBookRow
  from "./ListBookRow";
  import {useRecoilValue} from 'recoil';
 import { authorSearch, genreSearch, titleSearch } from "../../atom/store";
+import useAddToCart from "../../mutations/useAddToCart";
 
 const ListOfBooks: React.FC =() => {
     const title = useRecoilValue(titleSearch);
     const author = useRecoilValue(authorSearch);
     const genre = useRecoilValue(genreSearch);
     let {data: bookDetails, isError, isFetching} = useGetAllBooks(title, author, genre);
+    const { mutate: putToCart , isLoading: isMutating } = useAddToCart();
 
     if (isError) {
         bookDetails = []
     }
-    
-    const handleClick = (book: ListBookDetail) => {
-        console.log('you are the worst!')
-        console.log('the worst: ', book.author)
-    }
+
 return(
    <>
    {isFetching ? <Spinner color='red.500' size='xl' /> : 
@@ -37,7 +35,13 @@ return(
                 {
                 bookDetails && bookDetails.map((book, index: number) => (
                     <ListBookRow 
-                        handleClick={() => handleClick(book)}
+                        book={book}
+                        onClick={(book) => {
+                            console.log('hello')
+                            putToCart({
+                                bookId: book.ID
+                            });
+                        }}
                         key={index}
                         ID={book.ID}
                         title={book.title}
@@ -49,13 +53,10 @@ return(
                 ))
             }
             </Th>
-            
         </Table>
     </List>
    }
-   </>
-    
-    
+   </> 
 )
 
 }

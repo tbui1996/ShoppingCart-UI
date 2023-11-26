@@ -1,34 +1,34 @@
 import {
     useMutation,
     UseMutationOptions,
-    UseMutationResult,
     useQueryClient
 } from 'react-query';
-import { AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import axiosInstance from '../network';  
-import { AddToCart } from '../types';
-import { useGetAllBookKey } from '../queries/getAllBooks';
+import { PutCartPayload, SuccessServiceResult } from '../types';
+import { useGetShoppingCartKey } from '../queries/getShoppingCart';
 
 const useAddToCart = (
-    options: UseMutationOptions<
-      AxiosResponse,
-      string,
-      AddToCart
-    > = {}
-  ): UseMutationResult<AxiosResponse, string, AddToCart> => {
-    const queryClient = useQueryClient();
-    return useMutation<AxiosResponse, string, AddToCart>(
-      (request: AddToCart) =>
-        axiosInstance.post('/api/cart', request.id),
-      {
-        ...options,
-        onSuccess: async (data, variables, context) => {
-          options.onSuccess?.(data, variables, context);
-          await queryClient.invalidateQueries(useGetAllBookKey);
-        }
+  options: UseMutationOptions<number, AxiosError, PutCartPayload> ={}
+) => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async(params: PutCartPayload) => {
+      const { bookId } = params
+      const result = await axiosInstance.put<SuccessServiceResult<number>>(
+        `/api/cart/${bookId}`
+      );
+
+      return result.data;
+    },
+    {
+      onSuccess: (response, params, context) => {
+        const {result: id } = response;
+        options.onSuccess?.(id, params, context);
+        queryClient.invalidateQueries(useGetShoppingCartKey)
       }
-    );
+    }
+  );
 };
-  
-  export default useAddToCart;
-  
+
+export default useAddToCart

@@ -4,7 +4,8 @@ import { ListBookDetail } from '../../types';
 
 
 const ListBookRow: React.FC<ListBookDetail> =({
-handleClick,
+book,
+onClick,
 key,
 ID,
 title,
@@ -23,7 +24,7 @@ genre
                 <Td>{price}</Td>
                 <Td>{genre}</Td>
                 <Td>
-                 <Button onClick={handleClick}>Click</Button>
+                 <Button onClick={() => onClick(book)}>Add To Cart</Button>
                 </Td>
             </Tr>
         </Tbody>
