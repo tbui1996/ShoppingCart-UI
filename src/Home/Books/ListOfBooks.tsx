@@ -1,5 +1,6 @@
 import { List, Box, Spinner, Tr, Th, Td, Table } from "@chakra-ui/react";
-import useGetAllBooks, { ListBookDetail } from "../../queries/getAllBooks";
+import useGetAllBooks from "../../queries/getAllBooks";
+import { ListBookDetail } from "../../types";
 import ListBookRow
  from "./ListBookRow";
  import {useRecoilValue} from 'recoil';
@@ -10,9 +11,6 @@ const ListOfBooks: React.FC =() => {
     const author = useRecoilValue(authorSearch);
     const genre = useRecoilValue(genreSearch);
     let {data: bookDetails, isError, isFetching} = useGetAllBooks(title, author, genre);
-    console.log('what is ttile: ', title)
-    console.log('what is atuhor: ', author)
-    console.log('what is genre: ', genre)
 
     if (isError) {
         bookDetails = []

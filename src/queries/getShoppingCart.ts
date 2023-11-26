@@ -5,8 +5,7 @@ import { ListBookDetail } from '../types';
 
 export const useGetShoppingCartKey = 'get-all-book'
 
-const useGetShoppingCart = (title: string, author: string, genre: string,
-  options: UseQueryOptions<ListBookDetail[], string> = {}
+const useGetShoppingCart = (options: UseQueryOptions<ListBookDetail[], string> = {}
    ): UseQueryResult<ListBookDetail[], string> => 
    useQuery<ListBookDetail[], string>(
     useGetShoppingCartKey,

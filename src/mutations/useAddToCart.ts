@@ -19,7 +19,7 @@ const useAddToCart = (
     const queryClient = useQueryClient();
     return useMutation<AxiosResponse, string, AddToCart>(
       (request: AddToCart) =>
-        axiosInstance.post('/api/cart', request),
+        axiosInstance.post('/api/cart', request.id),
       {
         ...options,
         onSuccess: async (data, variables, context) => {

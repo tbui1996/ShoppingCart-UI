@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableContainer, Tbody, Td, Thead, Tr, Button } from '@chakra-ui/react';
+import { Tbody, Td, Tr, Button } from '@chakra-ui/react';
 import { ListBookDetail } from '../../types';
 
 
@@ -22,7 +22,9 @@ genre
                 <Td>{author}</Td>
                 <Td>{price}</Td>
                 <Td>{genre}</Td>
-                <Button onClick={handleClick}>Click</Button>
+                <Td>
+                 <Button onClick={handleClick}>Click</Button>
+                </Td>
             </Tr>
         </Tbody>
         </>
