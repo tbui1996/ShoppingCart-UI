@@ -1,7 +1,7 @@
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
 import { useRecoilState } from "recoil";
 import { titleSearch, genreSearch, authorSearch } from "../../atom/store";
-import { Input, Button } from "@chakra-ui/react";
+import { Input, Button, Text } from "@chakra-ui/react";
 import ResetButton from './ResetButton';
 //title, author, genre, as search parameters
 const Form: React.FC =() => {
@@ -25,12 +25,6 @@ const Form: React.FC =() => {
            setAuthorText(values.author)
 
         }}
-        // onReset={(values, {resetForm}) => {
-        //     resetForm()
-        //     setTitleText(' ')
-        //     setGenreText(' ')
-        //    setAuthorText(' ')
-        // }}
     >
         {({
             values,
@@ -43,26 +37,34 @@ const Form: React.FC =() => {
             isSubmitting,
         }) => (
             <form onSubmit={handleSubmit}>
-                <Input
-                    type="title"
+                <Text>Title:</Text>
+                <Field
+                    as={Input}
+                    id="title"
                     name="title"
+                    type="tel"
+                    variant='outline'
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.title}
                 />
-                <Input
-                type="author"
-                name="author"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.author}
+                <Text>Author:</Text>
+                <Field
+                    as={Input}
+                    id="author"
+                    name="author"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.author}
                 />
-                <Input
-                type="genre"
-                name="genre"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.genre}
+                <Text>Genre:</Text>
+                <Field
+                    as={Input}
+                    id="genre"
+                    name="genre"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.genre}
                 />
                 <Button type="submit" disabled={isSubmitting}>
                     Search
