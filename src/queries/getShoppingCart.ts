@@ -12,7 +12,6 @@ const useGetShoppingCart = (options: UseQueryOptions<Cart, string> = {}
     getUseShoppingCartKey,
     async () => {
       const response = await axiosInstance.get<Cart>('/api/cart');
-      console.log ('response from usgetshoppingcart: ', response.data)
       return response.data;  // Access the .data property to get the actual data
     },
   {

@@ -49,3 +49,7 @@ export interface BaseServiceResult {
 export interface SuccessServiceResult<TResult = undefined> extends BaseServiceResult {
     result: TResult;
 }
+
+export interface SingleCartDetail {
+    book: Book;
+}

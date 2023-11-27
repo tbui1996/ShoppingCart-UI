@@ -1,7 +1,7 @@
 import React from 'react';
 import { CartDetail } from "../../types";
 import { Tbody, Td, Tr, Button } from '@chakra-ui/react';
-
+import SingleCart from './SingleCartRow';
 const CartRow: React.FC<CartDetail> = ({
 handleClick,
 books
@@ -13,15 +13,11 @@ return (
         <Tbody>
             <Tr>
                 {books && books.map((book, index: number) => (
-                 <Td>
-                    {book.title}
-                 </Td>
-                 
+                 <SingleCart
+                    book={book}
+                 />
                 ))
                 }
-                <Td>
-                  <Button onClick={handleClick}>Remove From Cart</Button>
-                 </Td>
             </Tr>
         </Tbody>
     </>

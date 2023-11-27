@@ -37,7 +37,6 @@ return(
                     <ListBookRow 
                         book={book}
                         onClick={(book) => {
-                            console.log('put works');
                             putToCart({
                                 bookId: book.ID
                             });
