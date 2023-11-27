@@ -37,18 +37,21 @@ return(
                     <ListBookRow 
                         book={book}
                         onClick={(book) => {
-                            console.log('hello')
+                            console.log('put works');
                             putToCart({
                                 bookId: book.ID
                             });
-                        }}
+                        } }
                         key={index}
                         ID={book.ID}
                         title={book.title}
                         description={book.description}
                         author={book.author}
-                        price={book.price} 
-                        genre={book.genre}                    
+                        price={book.price}
+                        genre={book.genre} 
+                        CreatedAt={book.CreatedAt} 
+                        UpdatedAt={book.UpdatedAt} 
+                        DeletedAt={book.DeletedAt}                    
                     />        
                 ))
             }

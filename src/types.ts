@@ -3,6 +3,9 @@ export interface ListBookDetail {
     onClick: (book: Book) => void;
     key: number;
     ID: number;
+    CreatedAt: string;
+    UpdatedAt: string;
+    DeletedAt: string | null;
     title: string;
     author: string;
     description: string;
@@ -11,6 +14,9 @@ export interface ListBookDetail {
 }
 export interface Book {
     ID: number;
+    CreatedAt: string;
+    UpdatedAt: string;
+    DeletedAt: string | null;
     title: string;
     author: string;
     description: string;
@@ -26,14 +32,16 @@ export interface PutCartPayload {
     bookId: number;
 }
 
-export interface ServiceCart {
-    book: ListBookDetail[]
+export interface Cart {
+    ID: number;
+    CreatedAt: string;
+    UpdatedAt: string;
+    DeletedAt: string | null;
+    books: Book[];
 }
-
-
 export interface CartDetail {
     handleClick: () => void;
-    title: string;
+    books: Book[];
 }
 export interface BaseServiceResult {
     status: number;

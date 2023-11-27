@@ -1,18 +1,20 @@
 import { UseQueryOptions, UseQueryResult, useQuery } from 'react-query';
 import axiosInstance from '../network';
-import { ListBookDetail } from '../types';
+import { Cart } from '../types';
 
 
-export const useGetShoppingCartKey = 'get-all-book'
 
-const useGetShoppingCart = (options: UseQueryOptions<ListBookDetail[], string> = {}
-   ): UseQueryResult<ListBookDetail[], string> => 
-   useQuery<ListBookDetail[], string>(
-    useGetShoppingCartKey,
-   async () =>
-  (await axiosInstance.get<ListBookDetail[]>(`/api/cart`))
-  .data,
-  
+export const getUseShoppingCartKey = 'get-shopping-cart'
+
+const useGetShoppingCart = (options: UseQueryOptions<Cart, string> = {}
+   ): UseQueryResult<Cart, string> => 
+   useQuery<Cart, string>(
+    getUseShoppingCartKey,
+    async () => {
+      const response = await axiosInstance.get<Cart>('/api/cart');
+      console.log ('response from usgetshoppingcart: ', response.data)
+      return response.data;  // Access the .data property to get the actual data
+    },
   {
     ...options,
     enabled: (options.enabled == null || options.enabled)

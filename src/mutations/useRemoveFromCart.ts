@@ -8,6 +8,7 @@ import { AxiosResponse } from 'axios';
 import axiosInstance from '../network';
 import { RemoveFromCart } from '../types';
 import { useGetAllBookKey } from '../queries/getAllBooks';
+import { getUseShoppingCartKey } from '../queries/getShoppingCart';
 
   
   const useRemoveFromCart = (
@@ -25,6 +26,7 @@ import { useGetAllBookKey } from '../queries/getAllBooks';
         onSuccess: async (data, variables, context) => {
           options.onSuccess?.(data, variables, context);
           queryClient.invalidateQueries(useGetAllBookKey);
+          queryClient.invalidateQueries(getUseShoppingCartKey);
         }
       }
     );

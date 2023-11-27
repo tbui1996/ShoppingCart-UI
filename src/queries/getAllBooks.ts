@@ -3,6 +3,9 @@ import axiosInstance from '../network';
 import { ListBookDetail } from '../types';
 
 
+// export const useGetAllBookKeyTest = (title: string | undefined = undefined, author: string | undefined=undefined, genre: string | undefined = undefined) =>
+//   [title, author, genre] ? ['books', title, author, genre] : ['books'];
+
 export const useGetAllBookKey = 'get-all-book'
 
 const useGetAllBooks = (title: string, author: string, genre: string,
