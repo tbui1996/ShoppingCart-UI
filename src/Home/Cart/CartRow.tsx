@@ -1,25 +1,24 @@
 import React from 'react';
-import { CartDetail } from "../../types";
+import { Book, CartDetail } from "../../types";
 import { Tbody, Td, Tr, Button } from '@chakra-ui/react';
-import SingleCart from './SingleCartRow';
+
 const CartRow: React.FC<CartDetail> = ({
-handleClick,
-books
+book,
+onClick
 }) => {
-    // console.log('do i get in here: ', books)
     
-return (
+   return (
     <>
-        <Tbody>
-            <Tr>
-                {books && books.map((book, index: number) => (
-                 <SingleCart
-                    book={book}
-                 />
-                ))
-                }
-            </Tr>
-        </Tbody>
+    <Tr>
+        <Td>
+            {book.title}
+        </Td>
+        <Td>
+        <Button onClick={() => onClick(book)}>Remove From Cart</Button>
+
+        </Td>
+    </Tr>
+    
     </>
 )
 }

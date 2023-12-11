@@ -2,17 +2,15 @@ import { List, Tr, Th, Td, Table } from "@chakra-ui/react";
 import useGetShoppingCart from "../../queries/getShoppingCart";
 import CartRow from "./CartRow";
 import { CartDetail } from "../../types";
+import useRemoveFromCart from "../../mutations/useRemoveFromCart";
 
 
 const Cart: React.FC = () => {
     const {data: shoppingCart} = useGetShoppingCart();
-    console.log('what is shopping cart bruv: ', shoppingCart)
-    
-    const clickButton = (book: CartDetail) => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-       
 
-    }
+    const { mutate: removeFromCart, isLoading: isMutating} = useRemoveFromCart()
+
+
 return(
    <>
    <List>
@@ -22,16 +20,21 @@ return(
                     <Td>Book</Td>
                 </Tr>
                 {
-                    shoppingCart && (
+                    shoppingCart?.Book && shoppingCart?.Book.map((book, index:number) =>(
                         <CartRow 
-                            handleClick={() => clickButton}
-                            books={shoppingCart.books}
+                            key={index}
+                            book={book}
+                            onClick={(book) => {
+                                console.log('is this hit: ', book.ID)
+                                removeFromCart({
+                                    id: book.ID
+                                })
+                            }}
                         />
-                    )
+                    ))
                 }
                 
             </Th>
-            
         </Table>
     </List>
    </>

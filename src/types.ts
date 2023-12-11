@@ -37,11 +37,11 @@ export interface Cart {
     CreatedAt: string;
     UpdatedAt: string;
     DeletedAt: string | null;
-    books: Book[];
+    Book: Book[];
 }
 export interface CartDetail {
-    handleClick: () => void;
-    books: Book[];
+    book: Book;
+    onClick: (book: Book) => void;
 }
 export interface BaseServiceResult {
     status: number;
@@ -52,4 +52,5 @@ export interface SuccessServiceResult<TResult = undefined> extends BaseServiceRe
 
 export interface SingleCartDetail {
     book: Book;
+    onClick: (book: Book) => void;
 }

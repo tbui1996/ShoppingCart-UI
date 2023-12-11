@@ -26,7 +26,7 @@ const useAddToCart = (
       onSuccess: async (response, params, context) => {
         const {result: id } = response;
         options.onSuccess?.(id, params, context);
-        queryClient.invalidateQueries(useGetAllBookKey);
+        // queryClient.invalidateQueries(useGetAllBookKey);
         queryClient.invalidateQueries(getUseShoppingCartKey)
       }
     }

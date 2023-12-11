@@ -13,6 +13,7 @@ const ListOfBooks: React.FC =() => {
     const genre = useRecoilValue(genreSearch);
     let {data: bookDetails, isError, isFetching} = useGetAllBooks(title, author, genre);
     const { mutate: putToCart , isLoading: isMutating } = useAddToCart();
+    console.log('what is bookdetails: ', bookDetails)
 
     if (isError) {
         bookDetails = []

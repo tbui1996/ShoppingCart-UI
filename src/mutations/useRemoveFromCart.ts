@@ -25,7 +25,7 @@ import { getUseShoppingCartKey } from '../queries/getShoppingCart';
         ...options,
         onSuccess: async (data, variables, context) => {
           options.onSuccess?.(data, variables, context);
-          queryClient.invalidateQueries(useGetAllBookKey);
+          // queryClient.invalidateQueries(useGetAllBookKey);
           queryClient.invalidateQueries(getUseShoppingCartKey);
         }
       }
