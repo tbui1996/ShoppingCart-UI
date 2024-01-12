@@ -7,7 +7,6 @@ import { AxiosError } from 'axios';
 import axiosInstance from '../network';  
 import { PutCartPayload, SuccessServiceResult } from '../types';
 import { getUseShoppingCartKey } from '../queries/getShoppingCart';
-import { useGetAllBookKey } from '../queries/getAllBooks';
 
 const useAddToCart = (
   options: UseMutationOptions<number, AxiosError, PutCartPayload> ={}
@@ -27,7 +26,6 @@ const useAddToCart = (
       onSuccess: async (response, params, context) => {
         const {result: id } = response;
         options.onSuccess?.(id, params, context);
-        // queryClient.invalidateQueries(useGetAllBookKey);
         queryClient.invalidateQueries(getUseShoppingCartKey)
       }
     }

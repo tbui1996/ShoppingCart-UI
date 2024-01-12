@@ -1,6 +1,5 @@
-import { List, Box, Spinner, Tr, Th, Td, Table } from "@chakra-ui/react";
+import { List, Spinner, Tr, Th, Td, Table } from "@chakra-ui/react";
 import useGetAllBooks from "../../queries/getAllBooks";
-import { ListBookDetail } from "../../types";
 import ListBookRow
  from "./ListBookRow";
  import {useRecoilValue} from 'recoil';
@@ -12,7 +11,7 @@ const ListOfBooks: React.FC =() => {
     const author = useRecoilValue(authorSearch);
     const genre = useRecoilValue(genreSearch);
     let {data: bookDetails, isError, isFetching} = useGetAllBooks(title, author, genre);
-    const { mutate: putToCart , isLoading: isMutating } = useAddToCart();
+    const { mutate: putToCart } = useAddToCart();
     console.log('what is bookdetails: ', bookDetails)
 
     if (isError) {

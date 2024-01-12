@@ -1,6 +1,6 @@
 import React from 'react';
-import { Book, CartDetail } from "../../types";
-import { Tbody, Td, Tr, Button } from '@chakra-ui/react';
+import { CartDetail } from "../../types";
+import {  Td, Tr, Button } from '@chakra-ui/react';
 
 const CartRow: React.FC<CartDetail> = ({
 book,

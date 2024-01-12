@@ -1,14 +1,13 @@
 import { List, Tr, Th, Td, Table } from "@chakra-ui/react";
 import useGetShoppingCart from "../../queries/getShoppingCart";
 import CartRow from "./CartRow";
-import { CartDetail } from "../../types";
 import useRemoveFromCart from "../../mutations/useRemoveFromCart";
 
 
 const Cart: React.FC = () => {
     const {data: shoppingCart} = useGetShoppingCart();
 
-    const { mutate: removeFromCart, isLoading: isMutating} = useRemoveFromCart()
+    const { mutate: removeFromCart } = useRemoveFromCart()
 
 
 return(
