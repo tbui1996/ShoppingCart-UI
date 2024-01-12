@@ -38,6 +38,7 @@ return(
                     <ListBookRow 
                         book={book}
                         onClick={(book) => {
+                            console.log('do i get here: ', book.ID)
                             putToCart({
                                 bookId: book.ID
                             });

@@ -37,7 +37,7 @@ export interface Cart {
     CreatedAt: string;
     UpdatedAt: string;
     DeletedAt: string | null;
-    Book: Book[];
+    books: Book[];
 }
 export interface CartDetail {
     book: Book;

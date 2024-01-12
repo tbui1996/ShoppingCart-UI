@@ -16,9 +16,10 @@ const useAddToCart = (
   return useMutation(
     async(params: PutCartPayload) => {
       const { bookId } = params
-      const result = await axiosInstance.put<SuccessServiceResult<number>>(
+      const result = await axiosInstance.post<SuccessServiceResult<number>>(
         `/api/cart/${bookId}`
       );
+        console.log('does bookID get passed: ', bookId)
 
       return result.data;
     },
