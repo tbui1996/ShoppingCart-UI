@@ -7,11 +7,6 @@ import useRemoveFromCart from "../../mutations/useRemoveFromCart";
 
 const Cart: React.FC = () => {
     const {data: shoppingCart} = useGetShoppingCart();
-    console.log('what is shippoingcart: ', shoppingCart)
-    if(shoppingCart?.books){
-        console.log('what is shippoingcart: ', shoppingCart.books)
-
-    }
 
     const { mutate: removeFromCart, isLoading: isMutating} = useRemoveFromCart()
 
@@ -22,7 +17,8 @@ return(
         <Table>
             <Th>
                 <Tr>
-                    <Td>books</Td>
+                    <Td>Books</Td>
+                    <Td>Book ID</Td>
                 </Tr>
                 {
                     shoppingCart && shoppingCart.books && shoppingCart.books.map((book, index:number) =>(

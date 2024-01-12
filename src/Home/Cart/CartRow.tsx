@@ -14,6 +14,9 @@ onClick
             {book.title}
         </Td>
         <Td>
+            {book.ID}
+        </Td>
+        <Td>
         <Button onClick={() => onClick(book)}>Remove From Cart</Button>
 
         </Td>
