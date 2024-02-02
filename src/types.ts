@@ -24,6 +24,14 @@ export interface Book {
     genre: string;    
 }
 
+export interface PatchBookRequest {
+    ID: number;
+    title?: string;
+    author?: string;
+    description?: string;
+    genre?: string; 
+}
+
 export interface RemoveFromCart {
     id: number;
 }

@@ -1,10 +1,11 @@
-import { List, Spinner, Tr, Th, Td, Table } from "@chakra-ui/react";
+import { List, Spinner, Tr, Th, Td, Table, useDisclosure } from "@chakra-ui/react";
 import useGetAllBooks from "../../queries/getAllBooks";
 import ListBookRow
  from "./ListBookRow";
  import {useRecoilValue} from 'recoil';
 import { authorSearch, genreSearch, titleSearch } from "../../atom/store";
 import useAddToCart from "../../mutations/useAddToCart";
+import usePatchBook from "../../mutations/usePatchBook";
 
 const ListOfBooks: React.FC =() => {
     const title = useRecoilValue(titleSearch);
@@ -12,6 +13,10 @@ const ListOfBooks: React.FC =() => {
     const genre = useRecoilValue(genreSearch);
     let {data: bookDetails, isError, isFetching} = useGetAllBooks(title, author, genre);
     const { mutate: putToCart } = useAddToCart();
+    const { mutate: patchBook } = usePatchBook();
+    const {isOpen, onOpen, onClose } = useDisclosure()
+
+
     console.log('what is bookdetails: ', bookDetails)
 
     if (isError) {
@@ -25,6 +30,7 @@ return(
         <Table>
             <Th>
                 <Tr>
+                    <Td>Edit</Td>
                     <Td>Title</Td>
                     <Td>Description</Td>
                     <Td>Author</Td>
@@ -37,7 +43,6 @@ return(
                     <ListBookRow 
                         book={book}
                         onClick={(book) => {
-                            console.log('do i get here: ', book.ID)
                             putToCart({
                                 bookId: book.ID
                             });
