@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { 
 Tbody, 
 Td, 
@@ -33,6 +33,18 @@ genre
     const { mutate: patchBook } = usePatchBook();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const initialRef = useRef(null);
+    const [titleValue, setTitleValue] = useState(title);
+    const [authorValue, setAuthorValue] = useState(author);
+    const [descriptionValue, setDescriptionValue] = useState(description);
+    const [genreValue, setGenreValue] = useState(genre);
+
+    const handleTitleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => setTitleValue(event.target.value)
+    const handleAuthorChange = (event: { target: { value: React.SetStateAction<string>; }; }) => setAuthorValue(event.target.value)
+    const handleDescriptionChange = (event: { target: { value: React.SetStateAction<string>; }; }) => setDescriptionValue(event.target.value)
+    const handleGenreChange = (event: { target: { value: React.SetStateAction<string>; }; }) => setGenreValue(event.target.value)
+
+
+    console.log('what is ')
     return (
         <>
         <Tbody>
@@ -51,24 +63,53 @@ genre
                             <ModalBody>
                                 <FormControl>
                                     <FormLabel>Edit Title</FormLabel>
-                                    <Input ref={initialRef} placeholder={book.title} />
+                                    <Input 
+                                        ref={initialRef} 
+                                        value={titleValue} 
+                                        onChange={handleTitleChange}
+                                        placeholder={book.title} 
+                                    />
                                     <FormLabel>Edit Description</FormLabel>
-                                    <Input ref={initialRef} placeholder={book.description} />
+                                    <Input 
+                                        ref={initialRef} 
+                                        value={descriptionValue}
+                                        onChange={handleDescriptionChange}
+                                        placeholder={book.description} 
+                                    />
                                     <FormLabel>Edit Author</FormLabel>
-                                    <Input ref={initialRef} placeholder={book.author} />
+                                    <Input 
+                                        ref={initialRef} 
+                                        value={authorValue}
+                                        onChange={handleAuthorChange}
+                                        placeholder={book.author} />
                                     <FormLabel>Edit Genre</FormLabel>
-                                    <Input ref={initialRef} placeholder={book.genre} />
+                                    <Input 
+                                        ref={initialRef} 
+                                        value={genreValue}
+                                        onChange={handleGenreChange}
+                                        placeholder={book.genre} 
+                                    />
                                 </FormControl>
                             </ModalBody>
                         <ModalFooter>
-                            <Button colorScheme='blue' mr={3} onClick={onClose}>
+                            <Button colorScheme='blue' mr={3} onClick={() => {
+                                console.log('what is bookID: ',ID)
+                                onClose()
+
+                                }}>
                             Close
                             </Button>
-                            <Button variant='ghost' onClick={(book) => {
-                            patchBook({
-                                ID: ID,
-                            })
-                        }}>Submit</Button>
+                            <Button variant='ghost' onClick={(e) => {
+                                patchBook({
+                                    ID: ID,
+                                    title: titleValue,
+                                    author: authorValue,
+                                    description: descriptionValue,
+                                    genre: genreValue
+                                    })
+                                }}>
+                                Submit
+                            </Button>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
