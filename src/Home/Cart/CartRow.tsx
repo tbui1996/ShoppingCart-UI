@@ -6,7 +6,6 @@ const CartRow: React.FC<CartDetail> = ({
 book,
 onClick
 }) => {
-    console.log('inside cartrow comp: ', book.title)
    return (
     <>
     <Tr>

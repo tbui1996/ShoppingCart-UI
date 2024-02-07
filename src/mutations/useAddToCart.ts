@@ -18,8 +18,6 @@ const useAddToCart = (
       const result = await axiosInstance.post<SuccessServiceResult<number>>(
         `/api/cart/${bookId}`
       );
-        console.log('does bookID get passed: ', bookId)
-
       return result.data;
     },
     {

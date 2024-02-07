@@ -20,9 +20,6 @@ const usePatchBook = (
     const queryClient = useQueryClient();
     return useMutation<AxiosResponse, string, PatchBookRequest>(
       (request) => {
-        // Log the request before sending
-        console.log('Sending PATCH request with data:', request);
-
         return axiosInstance.put(`/api/book/${request.ID}`, {
           title: request.title,
           author: request.author,

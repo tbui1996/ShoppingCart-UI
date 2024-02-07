@@ -44,7 +44,6 @@ genre
     const handleGenreChange = (event: { target: { value: React.SetStateAction<string>; }; }) => setGenreValue(event.target.value)
 
 
-    console.log('what is ')
     return (
         <>
         <Tbody>
@@ -92,11 +91,7 @@ genre
                                 </FormControl>
                             </ModalBody>
                         <ModalFooter>
-                            <Button colorScheme='blue' mr={3} onClick={() => {
-                                console.log('what is bookID: ',ID)
-                                onClose()
-
-                                }}>
+                            <Button colorScheme='blue' mr={3} onClick={onClose}>
                             Close
                             </Button>
                             <Button variant='ghost' onClick={(e) => {

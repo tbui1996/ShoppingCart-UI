@@ -25,7 +25,6 @@ return(
                             key={index}
                             book={book}
                             onClick={(book) => {
-                                console.log('is this hit: ', book.ID)
                                 removeFromCart({
                                     id: book.ID
                                 })
