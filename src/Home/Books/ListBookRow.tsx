@@ -94,7 +94,7 @@ genre
                             <Button colorScheme='blue' mr={3} onClick={onClose}>
                             Close
                             </Button>
-                            <Button variant='ghost' onClick={(e) => {
+                            <Button variant='ghost' onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                                 patchBook({
                                     ID: ID,
                                     title: titleValue,
