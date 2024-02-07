@@ -6,7 +6,7 @@ import ListBookRow
 import { authorSearch, genreSearch, titleSearch } from "../../atom/store";
 import useAddToCart from "../../mutations/useAddToCart";
 
-const ListOfBooks: React.FC =() => {
+const ListOfBooks: React.FC = () => {
     const title = useRecoilValue(titleSearch);
     const author = useRecoilValue(authorSearch);
     const genre = useRecoilValue(genreSearch);
