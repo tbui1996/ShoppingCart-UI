@@ -2,6 +2,7 @@ import { List, Tr, Th, Td, Table } from "@chakra-ui/react";
 import useGetShoppingCart from "../../queries/getShoppingCart";
 import CartRow from "./CartRow";
 import useRemoveFromCart from "../../mutations/useRemoveFromCart";
+import { Book } from "../../types";
 
 
 const Cart: React.FC = () => {
@@ -24,7 +25,7 @@ return(
                         <CartRow 
                             key={index}
                             book={book}
-                            onClick={(book) => {
+                            onClick={(book: Book) => {
                                 removeFromCart({
                                     id: book.ID
                                 })
